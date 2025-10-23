@@ -26,6 +26,6 @@ def get_model():
         train_model()
     return joblib.load('model.joblib')
 
-def make_prediction(*args):
-    prediction = get_model().predict(args)
+def make_prediction(params):
+    prediction = get_model().predict(params)
     return prediction
