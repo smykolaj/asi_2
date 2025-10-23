@@ -28,5 +28,5 @@ def get_model():
 
 def make_prediction(params):
     prediction = get_model().predict(params)
-    flower = target[prediction]
+    flower = target[prediction[0]]
     return flower
