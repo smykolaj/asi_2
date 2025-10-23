@@ -6,7 +6,7 @@ import joblib
 import os
 
 filename = 'model.joblib'
-
+target = ['setosa','versicolor','virginica']
 def train_model():
     iris = load_iris()
 
@@ -28,4 +28,5 @@ def get_model():
 
 def make_prediction(params):
     prediction = get_model().predict(params)
-    return prediction
+    flower = target[prediction]
+    return flower
