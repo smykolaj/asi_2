@@ -1,0 +1,11 @@
+.git
+.gitignore
+.DS_Store
+__pycache__/
+*.py[cod]
+.venv/
+venv/
+.mypy_cache/
+.pytest_cache/
+*.log
+.ipynb_checkpoints/
