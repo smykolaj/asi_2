@@ -2,7 +2,7 @@ import streamlit as st
 
 from predict import make_prediction
 
-st.title("Iris prediction app")
+st.title("Very big change")
 
 f1 = st.slider(label='SepalLengthCm',min_value=4.3,max_value=7.9)
 f2 = st.slider(label='SepalWidthCm',min_value=2.0,max_value=4.4)
