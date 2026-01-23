@@ -1,13 +1,46 @@
+import json
+import os
+
+import joblib
 import streamlit as st
 
-from predict import make_prediction
+meta_path = "app/model_meta.json"
+model_path = "app/model.joblib"
 
-st.title("Very big change")
 
-f1 = st.slider(label='SepalLengthCm',min_value=4.3,max_value=7.9)
-f2 = st.slider(label='SepalWidthCm',min_value=2.0,max_value=4.4)
-f3 = st.slider(label='PetalLengthCm',min_value=1.0,max_value=6.9)
-f4 = st.slider(label='PetalWidthCm',min_value=1.0,max_value=2.5)
+def load_meta():
+    if os.path.exists(meta_path):
+        with open(meta_path, "r") as f:
+            return json.load(f)
+    return None
 
-prediction = make_prediction([[f1, f2, f3, f4]])
-st.markdown(f'### Prediction: {prediction}')
+
+meta = load_meta()
+
+st.title("Iris Species Predictor")
+
+# Input features
+f1 = st.slider("Sepal Length (cm)", 4.3, 7.9, 5.8)
+f2 = st.slider("Sepal Width (cm)", 2.0, 4.4, 3.0)
+f3 = st.slider("Petal Length (cm)", 1.0, 6.9, 4.3)
+f4 = st.slider("Petal Width (cm)", 0.1, 2.5, 1.3)
+
+if st.button("Predict"):
+    if os.path.exists(model_path):
+        model = joblib.load(model_path)
+        prediction = model.predict([[f1, f2, f3, f4]])
+        target_names = ["setosa", "versicolor", "virginica"]
+        st.success(f"Prediction: **{target_names[prediction[0]]}**")
+    else:
+        st.error("Model file not found. Please run train_model.py first.")
+
+# Footer
+if meta:
+    st.markdown("---")
+    st.markdown(
+        f"**Version:** {meta['version']} • "
+        f"**Best Model:** {meta['best_model']} • "
+        f"**MLflow Run ID:** `{meta['mlflow_run_id'][:8]}...` • "
+        f"**Accuracy:** {meta['metrics']['accuracy']:.3f}"
+    )
+    st.info("[Open MLflow UI](http://localhost:5000)")
