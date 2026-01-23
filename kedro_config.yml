@@ -1,0 +1,6 @@
+project_name: iris_kedro
+repo_name: iris_kedro
+python_package: iris_kedro
+output_dir: .
+tools: "none"
+example_pipeline: "no"

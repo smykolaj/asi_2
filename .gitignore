@@ -166,7 +166,7 @@ cython_debug/
 mlruns/
 delivery_5/
 
-app/*.json
+model_meta.json
 
 *.joblib
 *.pkl

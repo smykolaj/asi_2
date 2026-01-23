@@ -1,0 +1,52 @@
+[build-system]
+requires = [
+    "setuptools",
+]
+build-backend = "setuptools.build_meta"
+
+[project]
+requires-python = ">=3.10"
+name = "iris_kedro"
+readme = "README.md"
+dynamic = [
+    "version",
+]
+dependencies = [
+    "ipython>=8.10",
+    "jupyterlab>=3.0",
+    "notebook",
+    "kedro~=1.1.1",
+    "kedro-mlflow>=2.0.1",
+    "kedro-viz>=12.2.0",
+    "scikit-learn>=1.7.2",
+    "pandas>=2.3.3",
+    "mlflow>=3.8.1",
+    "kedro-datasets[pandas]>=9.1.1",
+    "seaborn>=0.13.2",
+    "matplotlib>=3.10.8",
+]
+
+[project.scripts]
+iris_kedro = "iris_kedro.__main__:main"
+
+[project.entry-points."kedro.hooks"]
+
+[tool.setuptools.dynamic.version]
+attr = "iris_kedro.__version__"
+
+[tool.setuptools.packages.find]
+where = [
+    "src",
+]
+namespaces = false
+
+[tool.kedro]
+package_name = "iris_kedro"
+project_name = "iris_kedro"
+kedro_init_version = "1.1.1"
+tools = "['None']"
+example_pipeline = "False"
+source_dir = "src"
+
+[tool.kedro_telemetry]
+project_id = "8c15e1b9625f4acda3626da8c49d9afb"

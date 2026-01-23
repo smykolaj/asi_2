@@ -1,0 +1,12 @@
+test_size: 0.3
+random_state: 42
+
+model_options:
+  RandomForest:
+    n_estimators: 15
+  LogisticRegression:
+    max_iter: 20
+  SVM:
+    probability: True
+  KNN:
+    n_neighbors: 2
